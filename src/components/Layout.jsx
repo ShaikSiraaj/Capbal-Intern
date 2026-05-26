@@ -167,7 +167,7 @@ export default function Layout() {
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-accent" />
             </div>
             <div className="leading-tight">
-              <div className="font-serif text-lg font-semibold tracking-tight">Mine</div>
+              <div className="font-serif text-lg font-semibold tracking-tight">StudySpark</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground -mt-0.5">Study Atelier</div>
             </div>
           </Link>
@@ -230,7 +230,7 @@ export default function Layout() {
             "The mind is not a vessel to be filled, but a fire to be kindled."
           </p>
           <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            Mine · Educational AI
+            StudySpark · Educational AI
           </p>
         </div>
       </footer>

@@ -16,7 +16,7 @@ Copy the example env file:
 ```bash
 cp .env.example .env
 ```
-Then open `.env` and fill in your Mine ID from your Base44 dashboard.
+Then open `.env` and fill in your StudySpark ID from your Base44 dashboard.
 
 ### 3. Run the Development Server
 ```bash

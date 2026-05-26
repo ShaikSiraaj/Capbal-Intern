@@ -76,7 +76,7 @@ export default function LandingPage() {
     { q: 'Do I need a credit card to sign up?', a: 'No. You can create a free account and start studying immediately — no payment required.' },
     { q: 'What file formats are supported?', a: 'We support PDF, plain text, and articles from URLs. More formats are coming soon.' },
     { q: 'Is my data private?', a: 'Yes. Your study materials and notes are private and only visible to you. We never share or sell your data.' },
-    { q: 'Can I use this on mobile?', a: 'Absolutely. Mine is fully responsive and works great on phones and tablets.' },
+    { q: 'Can I use this on mobile?', a: 'Absolutely. StudySpark is fully responsive and works great on phones and tablets.' },
   ];
 
   return (
@@ -91,7 +91,7 @@ export default function LandingPage() {
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-accent" />
             </div>
             <div className="leading-tight">
-              <div className="font-serif text-lg font-semibold tracking-tight">Mine</div>
+              <div className="font-serif text-lg font-semibold tracking-tight">StudySpark</div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground -mt-0.5">Study Atelier</div>
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function LandingPage() {
           <h2 className="font-serif text-4xl font-semibold mb-16">Three steps to mastery</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
             {[
-              { step: '01', title: 'Upload your material', desc: 'Drop in a PDF, paste text, or share a URL. Mine handles the rest.' },
+              { step: '01', title: 'Upload your material', desc: 'Drop in a PDF, paste text, or share a URL. StudySpark handles the rest.' },
               { step: '02', title: 'AI builds your study kit', desc: 'Flashcards, quizzes, audio summaries — generated in seconds by AI.' },
               { step: '03', title: 'Learn and track progress', desc: 'Study with spaced repetition, track your streak, and ace the exam.' },
             ].map((s, i) => (
@@ -261,13 +261,13 @@ export default function LandingPage() {
             <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
               <BookMarked className="w-3.5 h-3.5 text-primary-foreground" />
             </div>
-            <span className="font-serif font-semibold">Mine</span>
+            <span className="font-serif font-semibold">StudySpark</span>
             <span className="text-xs text-muted-foreground">· Study Atelier</span>
           </div>
           <p className="text-xs text-muted-foreground font-serif italic">
             "The mind is not a vessel to be filled, but a fire to be kindled."
           </p>
-          <p className="text-xs text-muted-foreground">© 2025 Mine. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2025 StudySpark. All rights reserved.</p>
         </div>
       </footer>
 

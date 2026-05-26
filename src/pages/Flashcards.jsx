@@ -113,7 +113,7 @@ export default function Flashcards() {
       <SectionHeader
         eyebrow="Spaced repetition"
         title="Flashcards, reviewed."
-        description="Rate your recall on each card. Mine schedules the next review for the perfect moment you're about to forget."
+        description="Rate your recall on each card. StudySpark schedules the next review for the perfect moment you're about to forget."
         action={
           <div className="flex items-center gap-2">
             <Select value={materialId} onValueChange={(v) => { setMaterialId(v); setIdx(0); setFlipped(false); setGenerateError(''); }}>

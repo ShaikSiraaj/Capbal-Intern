@@ -78,7 +78,7 @@ export default function VoiceQA() {
       <SectionHeader
         eyebrow="Voice Q&A tutor"
         title="Ask your material anything."
-        description="Speak or type questions about your study material. Mine will answer, and read it back to you."
+        description="Speak or type questions about your study material. StudySpark will answer, and read it back to you."
         action={
           <Select value={materialId} onValueChange={pickMaterial}>
             <SelectTrigger className="w-64 rounded-full">

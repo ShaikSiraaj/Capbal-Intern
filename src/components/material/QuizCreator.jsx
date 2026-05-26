@@ -51,7 +51,7 @@ export default function QuizCreator({ open, onOpenChange, material }) {
       <DialogContent className="sm:max-w-[480px]">
         <DialogHeader>
           <DialogTitle className="font-serif text-2xl">Craft a new quiz</DialogTitle>
-          <DialogDescription>Let Mine generate intelligent questions from this material.</DialogDescription>
+          <DialogDescription>Let StudySpark generate intelligent questions from this material.</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-5 mt-2">

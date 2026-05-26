@@ -211,7 +211,7 @@ const subtitles = {
             <BookMarked className="w-4.5 h-4.5 text-white" />
           </div>
           <div>
-            <div className="font-serif text-lg font-semibold tracking-tight">Mine</div>
+            <div className="font-serif text-lg font-semibold tracking-tight">StudySpark</div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-primary-foreground/50 -mt-0.5">Study Atelier</div>
           </div>
         </div>
@@ -226,7 +226,7 @@ const subtitles = {
             recall effortlessly.
           </h2>
           <p className="text-primary-foreground/60 text-sm leading-relaxed">
-            Upload any study material and Mine instantly creates flashcards, quizzes, and audio summaries — powered by AI.
+            Upload any study material and StudySpark instantly creates flashcards, quizzes, and audio summaries — powered by AI.
           </p>
 
           {/* Mini feature list */}
@@ -261,7 +261,7 @@ const subtitles = {
           <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
             <BookMarked className="w-4.5 h-4.5 text-primary-foreground" />
           </div>
-          <span className="font-serif text-xl font-semibold">Mine</span>
+          <span className="font-serif text-xl font-semibold">StudySpark</span>
         </div>
 
         <div className="w-full max-w-sm">
