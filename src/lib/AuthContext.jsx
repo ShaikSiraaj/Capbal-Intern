@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { supabase } from '@/api/supabase';
 
 const AuthContext = createContext();
@@ -11,22 +11,44 @@ export const AuthProvider = ({ children }) => {
   const [authError, setAuthError] = useState(null);
   const [authChecked, setAuthChecked] = useState(false);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) { setUser(session.user); setIsAuthenticated(true); }
+  const checkUserAuth = useCallback(async () => {
+    setIsLoadingAuth(true);
+    try {
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error) throw error;
+      if (session?.user) {
+        setUser(session.user);
+        setIsAuthenticated(true);
+      } else {
+        setUser(null);
+        setIsAuthenticated(false);
+      }
+      setAuthError(null);
+    } catch (error) {
+      setAuthError(error || { message: 'Authentication check failed' });
+    } finally {
       setIsLoadingAuth(false);
       setAuthChecked(true);
-    });
+    }
+  }, []);
+
+  useEffect(() => {
+    checkUserAuth();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) { setUser(session.user); setIsAuthenticated(true); }
-      else { setUser(null); setIsAuthenticated(false); }
+      if (session?.user) {
+        setUser(session.user);
+        setIsAuthenticated(true);
+      } else {
+        setUser(null);
+        setIsAuthenticated(false);
+      }
       setIsLoadingAuth(false);
       setAuthChecked(true);
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [checkUserAuth]);
 
   const logout = async () => {
     await supabase.auth.signOut();
@@ -51,6 +73,7 @@ export const AuthProvider = ({ children }) => {
       authChecked,
       logout,
       navigateToLogin,
+      checkUserAuth,
     }}>
       {children}
     </AuthContext.Provider>

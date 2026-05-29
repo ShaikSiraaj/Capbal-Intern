@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs))
-} 
+}
 
-
-export const isIframe = window.self !== window.top;
+export const isBrowser = typeof window !== 'undefined' && typeof window.self !== 'undefined';
+export const isIframe = isBrowser ? window.self !== window.top : false;
