@@ -42,7 +42,7 @@ npm run build
 - `src/pages/` — Main pages (Dashboard, Library, Flashcards, Quiz, Analytics, VoiceQA)
 - `src/components/` — Reusable UI components
 - `src/lib/` — Utilities, auth, AI helpers
-- `entites/` — SQL schema files for database entities
+- `entites/` — SQL schema files for database entities but you cant do without the superbase for data importing and exporting
 
 ## Tech Stack
 - React 18 + Vite
