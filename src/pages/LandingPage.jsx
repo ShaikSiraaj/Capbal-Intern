@@ -4,7 +4,7 @@ import {
   BookMarked, Sparkles, Layers, Mic, BarChart3, ClipboardCheck,
   ArrowRight, Star, GraduationCap, Brain, Zap, Shield, ChevronDown
 } from 'lucide-react';
-const [mode, setMode] = useState('signin');
+
 const stats = [
   { value: '10x', label: 'Faster recall with spaced repetition' },
   { value: '94%', label: 'Average quiz score improvement' },
