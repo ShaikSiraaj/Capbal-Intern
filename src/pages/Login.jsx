@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/api/supabase';
 import {
-  BookMarked, Loader2, ArrowLeft, Mail, KeyRound,
+  BookMarked, Loader2, ArrowLeft, Mail,
   Eye, EyeOff, Sparkles, ArrowRight, CheckCircle2
 } from 'lucide-react';
 

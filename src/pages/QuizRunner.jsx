@@ -1,5 +1,5 @@
-import { StudyMaterial, Quiz, Flashcard, QuizAttempt, StudySession } from '@/api/entities';
-import React, { useEffect, useMemo, useState } from "react";
+import { Quiz, QuizAttempt, StudySession } from '@/api/entities';
+import React, { useMemo, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
