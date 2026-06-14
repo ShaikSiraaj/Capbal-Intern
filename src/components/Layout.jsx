@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { BookMarked, LayoutDashboard, Library, Sparkles, BarChart3, Mic, Layers, LogOut, GraduationCap, User, KeyRound, ChevronDown } from "lucide-react";
+import { BookMarked, LayoutDashboard, Library, Sparkles, BarChart3, Mic, Layers, LogOut, GraduationCap, KeyRound, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/AuthContext";
 import { supabase } from "@/api/supabase";

@@ -1,4 +1,4 @@
-import { StudyMaterial, Quiz, Flashcard, QuizAttempt, StudySession } from '@/api/entities';
+import { Flashcard, QuizAttempt, StudySession } from '@/api/entities';
 import React, { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 

@@ -1,5 +1,4 @@
 import { Flashcard } from '@/api/entities';
-import { StudyMaterial } from '@/api/entities';
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
