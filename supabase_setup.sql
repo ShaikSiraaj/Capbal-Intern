@@ -7,6 +7,7 @@ create table if not exists study_materials (
   user_id uuid references auth.users(id) on delete cascade,
   title text not null,
   subject text,
+  description text,
   source_type text default 'text',
   file_url text,
   content text,

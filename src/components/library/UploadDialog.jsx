@@ -127,13 +127,15 @@ export default function UploadDialog({ open, onOpenChange, onCreated }) {
   const [mode, setMode] = useState("text");
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
+  const [manualTopics, setManualTopics] = useState("");
   const [text, setText] = useState("");
   const [file, setFile] = useState(null);
   const [busy, setBusy] = useState(false);
   const [stage, setStage] = useState("");
 
   const reset = () => {
-    setTitle(""); setSubject(""); setText(""); setFile(null); setBusy(false); setStage("");
+    setTitle(""); setSubject(""); setDescription(""); setManualTopics(""); setText(""); setFile(null); setBusy(false); setStage("");
   };
 
   const handleSubmit = async () => {
@@ -161,15 +163,23 @@ export default function UploadDialog({ open, onOpenChange, onCreated }) {
       setStage("Analyzing with AI… (10-20 seconds)");
       const analysis = await analyzeContent(content, title || "Untitled");
 
+      const topicsArray = manualTopics
+        .split(",")
+        .map(t => t.trim())
+        .filter(t => t.length > 0);
+
+      const combinedTopics = Array.from(new Set([...(analysis.key_topics || []), ...topicsArray]));
+
       const words = content.trim().split(/\s+/).length;
       const created = await StudyMaterial.create({
         title: title || "Untitled Material",
         subject: subject || "General",
+        description: description || "",
         source_type,
         file_url,
         content: content.slice(0, 20000),
         summary: analysis.summary || "",
-        key_topics: analysis.key_topics || [],
+        key_topics: combinedTopics,
         word_count: words,
         estimated_read_time: Math.max(1, Math.round(words / 220)),
       });
@@ -204,6 +214,16 @@ export default function UploadDialog({ open, onOpenChange, onCreated }) {
               <Label>Subject</Label>
               <Input value={subject} onChange={e => setSubject(e.target.value)} placeholder="CS" />
             </div>
+          </div>
+
+          <div>
+            <Label>Description</Label>
+            <Input value={description} onChange={e => setDescription(e.target.value)} placeholder="Brief overview of this material" />
+          </div>
+
+          <div>
+            <Label>Topics (comma separated)</Label>
+            <Input value={manualTopics} onChange={e => setManualTopics(e.target.value)} placeholder="History, Rome, Empire" />
           </div>
 
           <Tabs value={mode} onValueChange={setMode}>

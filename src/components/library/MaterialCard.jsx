@@ -47,7 +47,7 @@ export default function MaterialCard({ material, onDeleted }) {
           {material.title}
         </h3>
         <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
-          {material.summary || material.content?.slice(0, 180) || "No summary yet."}
+          {material.description || material.summary || material.content?.slice(0, 180) || "No summary yet."}
         </p>
 
         {material.key_topics?.length > 0 && (
