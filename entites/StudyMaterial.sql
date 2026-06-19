@@ -10,6 +10,10 @@
       "type": "string",
       "description": "Subject or category"
     },
+    "description": {
+      "type": "string",
+      "description": "A brief description of the material"
+    },
     "source_type": {
       "type": "string",
       "enum": [

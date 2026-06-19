@@ -100,6 +100,11 @@ export default function MaterialDetail() {
         <h1 className="font-serif text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] max-w-3xl">
           {material.title}
         </h1>
+        {material.description && (
+          <p className="mt-4 text-xl text-muted-foreground max-w-2xl font-serif italic">
+            {material.description}
+          </p>
+        )}
         {material.key_topics?.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-5">
             {material.key_topics.map((t, i) => (
