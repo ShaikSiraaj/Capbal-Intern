@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   BookMarked, Sparkles, Layers, Mic, BarChart3, ClipboardCheck,
   ArrowRight, Star, GraduationCap, Brain, Zap, Shield, ChevronDown
@@ -69,6 +70,26 @@ function Counter({ target, suffix = '' }) {
   return <span>{count}{suffix}</span>;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
 export default function LandingPage() {
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -111,25 +132,39 @@ export default function LandingPage() {
       {/* ── HERO ── */}
       <section className="relative overflow-hidden pt-20 pb-28 px-6">
         {/* Background blobs */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-20 right-0 w-64 h-64 bg-accent/10 rounded-full blur-2xl pointer-events-none" />
+        <motion.div
+          animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-20 right-0 w-64 h-64 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+        />
 
-        <div className="relative max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/15 text-accent text-xs font-medium tracking-wide uppercase mb-6 border border-accent/20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="relative max-w-4xl mx-auto text-center"
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/15 text-accent text-xs font-medium tracking-wide uppercase mb-6 border border-accent/20">
             <Sparkles className="w-3 h-3" /> AI-Powered Learning — Free to Start
-          </div>
+          </motion.div>
 
-          <h1 className="font-serif text-5xl md:text-7xl font-semibold leading-[1.05] tracking-tight mb-6 text-foreground">
+          <motion.h1 variants={itemVariants} className="font-serif text-5xl md:text-7xl font-semibold leading-[1.05] tracking-tight mb-6 text-foreground">
             Study smarter.<br />
             <em className="italic text-accent">Remember everything.</em>
-          </h1>
+          </motion.h1>
 
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
+          <motion.p variants={itemVariants} className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
             Transform any PDF, article or lecture note into AI-generated flashcards, adaptive quizzes,
             and spoken lessons — in seconds. Built for students who want results.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/login"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground text-base font-semibold hover:bg-primary/90 transition-all shadow-md hover:shadow-lg">
               Start learning With AI <ArrowRight className="w-4 h-4" />
@@ -138,15 +173,15 @@ export default function LandingPage() {
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all">
               See how it works <ChevronDown className="w-4 h-4" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Trust badges */}
-          <div className="flex items-center justify-center gap-6 mt-10 text-xs text-muted-foreground">
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-6 mt-10 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-emerald-500" /> No credit card required</span>
             <span className="flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-amber-500" /> Ready in 30 seconds</span>
             <span className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 text-violet-500" /> Free forever plan</span>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ── STATS ── */}
@@ -168,20 +203,31 @@ export default function LandingPage() {
             <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-3">What's inside</div>
             <h2 className="font-serif text-4xl md:text-5xl font-semibold">Everything you need to ace your exams</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {features.map((f, i) => {
               const Icon = f.icon;
               return (
-                <div key={i} className="bg-card border border-border/60 rounded-2xl p-6 hover:shadow-md transition-all group">
+                <motion.div
+                  key={i}
+                  variants={itemVariants}
+                  whileHover={{ y: -5 }}
+                  className="bg-card border border-border/60 rounded-2xl p-6 hover:shadow-md transition-all group"
+                >
                   <div className={`inline-flex items-center justify-center w-11 h-11 rounded-xl ${f.color} mb-4`}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-serif text-lg font-semibold mb-2 group-hover:text-accent transition-colors">{f.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -190,22 +236,28 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-3">How it works</div>
           <h2 className="font-serif text-4xl font-semibold mb-16">Three steps to mastery</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-10 text-left"
+          >
             {[
               { step: '01', title: 'Upload your material', desc: 'Drop in a PDF, paste text, or share a URL. StudySpark handles the rest.' },
               { step: '02', title: 'AI builds your study kit', desc: 'Flashcards, quizzes, audio summaries — generated in seconds by AI.' },
               { step: '03', title: 'Learn and track progress', desc: 'Study with spaced repetition, track your streak, and ace the exam.' },
             ].map((s, i) => (
-              <div key={i} className="relative">
+              <motion.div key={i} variants={itemVariants} className="relative">
                 <div className="font-serif text-6xl font-bold text-border/60 mb-4 leading-none">{s.step}</div>
                 <h3 className="font-serif text-xl font-semibold mb-2">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                 {i < 2 && (
                   <div className="hidden md:block absolute top-8 right-0 translate-x-1/2 text-border text-2xl">→</div>
                 )}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -220,16 +272,26 @@ export default function LandingPage() {
               <div key={i} className="bg-card border border-border/60 rounded-xl overflow-hidden">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium hover:bg-secondary/40 transition-colors"
+                  className="w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium hover:bg-secondary/40 transition-colors group"
                 >
-                  {f.q}
+                  <span className={openFaq === i ? "text-accent" : "text-foreground group-hover:text-accent transition-colors"}>{f.q}</span>
                   <ChevronDown className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
                 </button>
-                {openFaq === i && (
-                  <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border/40 pt-3">
-                    {f.a}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {openFaq === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border/40 pt-3">
+                        {f.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>

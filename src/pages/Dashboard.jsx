@@ -2,6 +2,7 @@ import { StudyMaterial, Flashcard, QuizAttempt, StudySession } from '@/api/entit
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { BookMarked, ClipboardCheck, Layers, Target, Plus, ArrowRight, Sparkles, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,11 +24,28 @@ export default function Dashboard() {
   const dueCount = flashcards.filter((c) => !c.next_review_date || new Date(c.next_review_date) <= new Date()).length;
   const mastered = flashcards.filter((c) => c.mastery_level === "mastered").length;
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {/* Hero */}
-      <section className="relative mb-12">
-        <div className="bg-primary text-primary-foreground rounded-3xl p-8 md:p-12 relative overflow-hidden">
+      <motion.section variants={itemVariants} className="relative mb-12">
+        <div className="bg-primary text-primary-foreground rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-xl shadow-primary/10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
           <div className="relative z-10 max-w-2xl">
@@ -55,18 +73,18 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Stats */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        <StatTile label="Materials" value={materials.length} sub="in library" icon={BookMarked} accent="bg-primary/10 text-primary" />
-        <StatTile label="Quiz Avg" value={`${avgScore}%`} sub={`${attempts.length} attempts`} icon={ClipboardCheck} accent="bg-accent/15 text-accent" />
-        <StatTile label="Cards Due" value={dueCount} sub="for review today" icon={Layers} accent="bg-gold/15 text-foreground" />
-        <StatTile label="Mastered" value={mastered} sub={`of ${flashcards.length} cards`} icon={Target} accent="bg-secondary text-foreground" />
-      </section>
+      <motion.section variants={containerVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <motion.div variants={itemVariants}><StatTile label="Materials" value={materials.length} sub="in library" icon={BookMarked} accent="bg-primary/10 text-primary" /></motion.div>
+        <motion.div variants={itemVariants}><StatTile label="Quiz Avg" value={`${avgScore}%`} sub={`${attempts.length} attempts`} icon={ClipboardCheck} accent="bg-accent/15 text-accent" /></motion.div>
+        <motion.div variants={itemVariants}><StatTile label="Cards Due" value={dueCount} sub="for review today" icon={Layers} accent="bg-gold/15 text-foreground" /></motion.div>
+        <motion.div variants={itemVariants}><StatTile label="Mastered" value={mastered} sub={`of ${flashcards.length} cards`} icon={Target} accent="bg-secondary text-foreground" /></motion.div>
+      </motion.section>
 
       {/* Recent materials + activity */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <motion.section variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         <div className="lg:col-span-2">
           <div className="flex items-end justify-between mb-5">
             <div>
@@ -99,7 +117,7 @@ export default function Dashboard() {
             <RecentActivity sessions={sessions} />
           </div>
         </div>
-      </section>
-    </div>
+      </motion.section>
+    </motion.div>
   );
 }

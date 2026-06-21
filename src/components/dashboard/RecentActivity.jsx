@@ -17,13 +17,13 @@ export default function RecentActivity({ sessions = [] }) {
     );
   }
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-4">
       {sessions.slice(0, 6).map((s) => {
         const Icon = iconMap[s.activity_type] || BookOpen;
         return (
-          <li key={s.id} className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center">
-              <Icon className="w-4 h-4 text-foreground" />
+          <li key={s.id} className="flex items-center gap-4 group">
+            <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+              <Icon className="w-4.5 h-4.5 text-foreground group-hover:text-primary transition-colors" strokeWidth={1.5} />
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-sm font-medium capitalize">
