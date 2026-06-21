@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { BookMarked, LayoutDashboard, Library, Sparkles, BarChart3, Mic, Layers, LogOut, GraduationCap, KeyRound, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/lib/AuthContext";
@@ -67,8 +68,15 @@ function ProfileMenu({ user, logout }) {
           <ChevronDown className={cn("w-3.5 h-3.5 text-muted-foreground transition-transform", open && "rotate-180")} />
         </button>
 
+        <AnimatePresence>
         {open && (
-          <div className="absolute right-0 top-full mt-2 w-56 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute right-0 top-full mt-2 w-56 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden"
+          >
             {/* Profile Header */}
             <div className="px-4 py-3 border-b border-border/60 bg-secondary/30">
               <div className="flex items-center gap-3">
@@ -100,8 +108,9 @@ function ProfileMenu({ user, logout }) {
                 Logout
               </button>
             </div>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
 
       {/* Change Password Modal */}
@@ -159,7 +168,7 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-background paper-grain">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 glass-morphism backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 group">
             <div className="relative w-9 h-9 rounded-lg bg-primary flex items-center justify-center shadow-sm">

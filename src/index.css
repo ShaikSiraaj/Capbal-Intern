@@ -131,14 +131,24 @@
   .paper-grain {
     background-image:
       radial-gradient(circle at 20% 30%, hsl(var(--muted) / 0.4) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, hsl(var(--accent) / 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 80% 70%, hsl(var(--accent) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, hsl(var(--background)) 0%, transparent 100%);
   }
 
   .deckle-edge {
     box-shadow:
       0 1px 0 hsl(var(--border)),
+      0 8px 24px -12px hsl(var(--ink) / 0.15),
       0 20px 40px -20px hsl(var(--ink) / 0.12),
       0 0 0 1px hsl(var(--border) / 0.4);
+  }
+
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-background/80 border-b border-border/50;
+  }
+
+  .premium-gradient {
+    @apply bg-gradient-to-br from-primary via-primary/95 to-accent/20;
   }
 
   .scholarly-divider {
